@@ -19,7 +19,7 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>
                                     Clientes
                                 </a>
-                                <a class="nav-link" href="index.html">
+                                <a class="nav-link" href="/mechanic">
                                     <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
                                     Mecanicos
                                 </a>
@@ -27,7 +27,7 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-motorcycle"></i></div>
                                     Motocicletas
                                 </a>
-                                <a class="nav-link" href="index.html">
+                                <a class="nav-link" href="/maintenances">
                                     <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
                                     Mantenimientos
                                 </a>

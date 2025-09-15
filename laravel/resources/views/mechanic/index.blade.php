@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <h2 class="mt-4 fw-bold">Lista de Usuarios</h2>
+    <h2 class="mt-4 fw-bold">Lista de Mecanicos</h2>
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
     <div>
-        <i class="fas fa-user me-1"></i>
-        <b>Usuarios Registrados </b>
+        <i class="fas fa-wrench me-1"></i>
+        <b>Mecanicos Registrados </b>
     </div>
     <a href="{{ route('users.create') }}" class="btn btn-success btnsm fw-bold">
-        <i class="fas fa-plus"></i>Crear usuario
+        <i class="fas fa-plus"></i>Crear Mecanico
     </a>
 </div>
         <div class="card-header">
@@ -70,7 +70,3 @@
     </div>
 </div>
 @endsection
-
-
-
-

@@ -8,7 +8,7 @@
         <div class="card-header d-flex justify-content-between align-items-center">
     <div>
         <i class="fas fa-motorcycle me-1"></i>
-        <b>Motocicletas Registrads </b>
+        <b>Motocicletas Registradas </b>
     </div>
     <a href="{{ route('motorcycles.create') }}" class="btn btn-success mb-3 fw-bold">
         <i class="fas fa-plus"></i> Nueva Motocicleta
@@ -35,7 +35,7 @@
                 <tfoot>
                     <tr>
                         <th>Nro</th>
-                        <th>Usuario</th>
+                        <th>Propietario</th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Año</th>
@@ -44,11 +44,14 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php $n = 1 ?>
-                    @foreach($motorcycles as $motorcycle)
+                    @foreach($motorcycles as $key => $motorcycle)
                         <tr>
-                            <td><?php echo $n; ?></td>
-                            <td>{{ $motorcycle->user->name ?? 'N/A' }}</td>
+                            <td>{{ $key + 1 }}</td>
+                            <td>
+                                {{ $motorcycle->user->firstName ?? 'N/A' }} 
+                                {{ $motorcycle->user->lastName ?? '' }}
+                                {{ $motorcycle->user->secondLastName ?? '' }}
+                            </td>
                             <td>{{ $motorcycle->brand }}</td>
                             <td>{{ $motorcycle->model }}</td>
                             <td>{{ $motorcycle->year }}</td>
@@ -72,7 +75,6 @@
                                 </form>
                             </td>
                         </tr>
-                        <?php $n = $n + 1; ?>
                     @endforeach
                 </tbody>
             </table>

@@ -5,9 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MotorcycleController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\MaintenanceController;
+
+
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('pag');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -43,5 +46,11 @@ Route::resource('motorcycles', MotorcycleController::class);
 // Rutas para clientes
 Route::get('/clients', [UserController::class, 'clients']);
 
+// Rutas para mecanicos
+Route::get('/mechanic', [UserController::class, 'mechanics']);
+
 // Rutas para inventario
 Route::resource('inventory', InventoryController::class);
+
+// rutas de mantenimiento
+Route::resource('maintenances', MaintenanceController::class);

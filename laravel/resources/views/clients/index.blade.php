@@ -6,8 +6,8 @@
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
     <div>
-        <i class="fas fa-table me-1"></i>
-        <b>Usuarios Registrados </b>
+        <i class="fas fa-user-circle"></i>
+        <b>Clientes Registrados </b>
     </div>
     <a href="{{ route('users.create') }}" class="btn btn-success btnsm fw-bold">
         <i class="fas fa-plus"></i>Crear Cliente
@@ -41,10 +41,9 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    <?php $n = 1 ?>
-                    @foreach ($users as $user)
+                    @foreach ($users as $key => $user)
                         <tr>
-                            <td><?php echo $n; ?></td>
+                            <td>{{ $key + 1 }}</td>
                             <td>{{ $user->firstName }} {{ $user->lastName}} {{ $user->secondLastName }}</td>
                             <td>{{ $user->role }}</td>
                             <td>{{ $user->email }}</td>
@@ -64,7 +63,6 @@
                                 </form>
                             </td>
                        </tr>
-                       <?php $n = $n + 1; ?>
                     @endforeach
                 </tbody>
             </table>

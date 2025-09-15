@@ -13,7 +13,7 @@ class MotorcycleController extends Controller
      */
     public function index()
     {
-        $motorcycles = Motorcycle::all();
+        $motorcycles = Motorcycle::with('user')->get(); // ¡Carga la relación aquí!
         return view('motorcycles.index', compact('motorcycles'));
     }
 
@@ -22,7 +22,8 @@ class MotorcycleController extends Controller
      */
     public function create()
     {
-        return view('motorcycles.create');
+        $users = User::all(); // Obtener todos los usuarios para el select
+        return view('motorcycles.create', compact('users'));
     }
 
     /**

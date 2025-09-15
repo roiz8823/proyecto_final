@@ -102,7 +102,9 @@
                             
                             <div class="mt-4 mb-0">
                                 <div class="d-grid">
+                                    
                                     <button class="btn btn-success btn-block" type="submit">Registrar Usuario</button>
+                                    <a href="{{ route('users.index') }}" class="btn btn-danger btn-block">Cancelar</a>
                                 </div>
                             </div>
                         </form>

@@ -122,4 +122,10 @@ class UserController extends Controller
         return view('clients.index', compact('users'));
     }
 
+    public function mechanics()
+    {
+        $users = User::where('role','=','mechanic')->get();
+        return view('mechanic.index', compact('users'));
+    }
+
 }
