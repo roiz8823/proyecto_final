@@ -31,9 +31,13 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
                                     Mantenimientos
                                 </a>
-                                <a class="nav-link" href="{{ route('inventory.index') }}">
+                                <a class="nav-link" href="{{ route('reservations.index') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                                    Reservas
+                                </a>
+                                <a class="nav-link" href="{{ route('store.index') }}">
                                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
-                                    Inventario
+                                    Almacen
                                 </a>
                                 <a class="nav-link" href="index.html">
                                     <div class="sb-nav-link-icon"><i class="fas fa-store"></i></div>

@@ -37,11 +37,9 @@ class MaintenanceController extends Controller
             'idMotorcycle' => 'required|exists:motorcycle,idMotorcycle',
             'idMechanic' => 'required|exists:user,idUser',
             'diagnosis' => 'required|string',
-            'serviceDetails' => 'required|string',
             'partsUsed' => 'nullable|string',
             'cost' => 'required|numeric|min:0',
             'status' => 'required|integer|between:0,3',
-            'notes' => 'nullable|string',
             'maintenanceDate' => 'required|date',
         ]);
 
@@ -80,11 +78,9 @@ class MaintenanceController extends Controller
             'idMotorcycle' => 'required|exists:motorcycle,idMotorcycle',
             'idMechanic' => 'required|exists:user,idUser',
             'diagnosis' => 'required|string',
-            'serviceDetails' => 'required|string',
             'partsUsed' => 'nullable|string',
             'cost' => 'required|numeric|min:0',
             'status' => 'required|integer|between:0,3',
-            'notes' => 'nullable|string',
             'maintenanceDate' => 'required|date',
         ]);
 

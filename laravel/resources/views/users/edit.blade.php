@@ -27,38 +27,31 @@
                                 <div class="form-floating mb-3 mb-md-0">
                                     <input class="form-control" name="firstName" type="text" 
                                         placeholder="Nombre" value="{{ $user->firstName }}" required />
-                                    <label >Nombre</label>
+                                    <label >Nombres</label>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <div class="form-floating">
                                     <input class="form-control" name="lastName" type="text" 
                                         placeholder="Apellido Paterno" value="{{ $user->lastName }}" required />
-                                    <label >Apellido Paterno</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating">
-                                    <input class="form-control" name="secondLastName" type="text" 
-                                        placeholder="Apellido Materno" value="{{ $user->secondLastName }}" />
-                                    <label >Apellido Materno</label>
+                                    <label >Apellidos</label>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3 mb-md-0">
-                                    <input class="form-control" name="idNumber" type="text" 
-                                        placeholder="Cédula/DNI" value="{{ $user->idNumber }}" required />
-                                    <label >Cédula / DNI</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-floating">
                                     <input class="form-control"  name="phone" type="tel" 
                                         placeholder="Teléfono" value="{{ $user->phone }}" />
                                     <label >Teléfono</label>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-floating">
+                                   <input class="form-control" name="address" type="text" 
+                                        placeholder="Dirección" value="{{ $user->address }}" />
+                                    <label >Dirección</label>
                                 </div>
                             </div>
                         </div>
@@ -91,22 +84,10 @@
                             </div>
                         </div>
                         
-                        <div class="form-floating mb-3">
-                            <input class="form-control" name="address" type="text" 
-                                placeholder="Dirección" value="{{ $user->address }}" />
-                            <label >Dirección</label>
-                        </div>
-                        
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" name="notes" 
-                                    placeholder="Notas" style="height: 100px">{{ $user->notes }}</textarea>
-                            <label >Notas</label>
-                        </div>
-                        
                         <div class="mt-4 mb-0">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a href="{{ route('users.index') }}" class="btn btn-danger me-md-2">Cancelar</a>
                                 <button class="btn btn-warning" type="submit">Actualizar Usuario</button>
+                                <a href="{{ route('users.index') }}" class="btn btn-danger me-md-2">Cancelar</a>
                             </div>
                         </div>
                     </form>

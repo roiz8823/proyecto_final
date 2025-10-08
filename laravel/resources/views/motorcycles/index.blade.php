@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th>Nro</th>
-                        <th>Usuario</th>
+                        <th>Propietario</th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Año</th>
@@ -50,7 +50,6 @@
                             <td>
                                 {{ $motorcycle->user->firstName ?? 'N/A' }} 
                                 {{ $motorcycle->user->lastName ?? '' }}
-                                {{ $motorcycle->user->secondLastName ?? '' }}
                             </td>
                             <td>{{ $motorcycle->brand }}</td>
                             <td>{{ $motorcycle->model }}</td>

@@ -37,7 +37,6 @@ class MotorcycleController extends Controller
             'model' => 'required|string|max:50',
             'year' => 'required|integer|min:1900|max:' . (date('Y') + 1),
             'licensePlate' => 'required|string|max:15|unique:motorcycle,licensePlate',
-            'recommendations' => 'nullable|string',
         ]);
 
         Motorcycle::create($request->all());
@@ -72,7 +71,6 @@ class MotorcycleController extends Controller
             'model' => 'required|string|max:50',
             'year' => 'required|integer|min:1900|max:' . (date('Y') + 1),
             'licensePlate' => 'required|string|max:15|unique:motorcycle,licensePlate,' . $motorcycle->idMotorcycle . ',idMotorcycle',
-            'recommendations' => 'nullable|string',
             'status' => 'required|boolean',
         ]);
 

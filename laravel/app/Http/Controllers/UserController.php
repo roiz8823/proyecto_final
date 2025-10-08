@@ -35,9 +35,7 @@ class UserController extends Controller
             
             'firstName' => 'required|string',
             'lastName' => 'required|string',
-            'idNumber' => 'required|unique:user',
             'email' => 'required|email|unique:user',
-            'username' => 'required|unique:user',
             'password' => 'required|min:6',
             'role' => 'required|in:admin,mechanic,client',
         ]);
@@ -46,16 +44,12 @@ class UserController extends Controller
 
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
-            'secondLastName' => $request->secondLastName,
-            'idNumber' => $request->idNumber,
             'email' => $request->email,
             'phone' => $request->phone,
-            'username' => $request->username,
             'password' => Hash::make($request->password),
             'role' => $request->role,
             'address' => $request->address,
             'status' => $request->status ?? 1,
-            'notes' => $request->notes,
             'registrationDate' => now(),
 
         ]);
@@ -88,14 +82,11 @@ class UserController extends Controller
 
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
-        $user->secondLastName = $request->secondLastName;
-        $user->idNumber = $request->idNumber;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->role = $request->role;
         $user->address = $request->address;
         $user->status = $request->status;
-        $user->notes = $request->notes;
         $user->updateDate = now(); 
 
         if ($request->filled('password')) {

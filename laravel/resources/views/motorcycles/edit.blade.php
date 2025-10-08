@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
                                     <input class="form-control" name="idUser" type="text" 
-                                           placeholder="Placa" value="{{ old('idUser', $motorcycle->idUser) }}" required />
+                                           placeholder="Placa" value="{{ $motorcycle->user->firstName }} {{ $motorcycle->user->lastName }}" required />
                                     <label for="idUser">Propietario</label>
                                 </div>
                             </div>
@@ -79,12 +79,6 @@
                                     <label for="status">Estado</label>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" name="recommendations" id="recommendations" 
-                                      style="height: 100px">{{ old('recommendations', $motorcycle->recommendations) }}</textarea>
-                            <label for="recommendations">Recomendaciones/Mantenimiento</label>
                         </div>
                         
                         <div class="mt-4 mb-0">

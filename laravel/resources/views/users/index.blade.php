@@ -44,7 +44,7 @@
                     @foreach ($users as $key => $user)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $user->firstName }} {{ $user->lastName}} {{ $user->secondLastName }}</td>
+                            <td>{{ $user->firstName }} {{ $user->lastName}}</td>
                             <td>{{ $user->role }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone }}</td>

@@ -28,33 +28,44 @@
                             @csrf
                             
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <select class="form-select" name="idUser" id="idUser" required>
-                                            <option value="">Seleccione un propietario</option>
+                                        <input list="userOptions" class="form-control" name="idUserSearch" id="idUserSearch" 
+                                            placeholder="Escriba para buscar..." autocomplete="off">
+                                        <datalist id="userOptions">
                                             @foreach($users as $user)
-                                                <option value="{{ $user->idUser }}" {{ old('idUser') == $user->idUser ? 'selected' : '' }}>
-                                                    {{ $user->firstName }} {{ $user->lastName }} ({{ $user->email }})
-                                                </option>
+                                                <option value="{{ $user->firstName }} {{ $user->lastName }} ({{ $user->email }})" 
+                                                        data-value="{{ $user->idUser }}">
                                             @endforeach
-                                        </select>
-                                        <label for="idUser">Propietario</label>
+                                        </datalist>
+                                        <input type="hidden" name="idUser" id="idUser">
+                                        <label for="idUserSearch">Propietario</label>
                                     </div>
-                                    <small class="text-muted">Seleccione el dueño de la motocicleta</small>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input class="form-control" name="licensePlate" type="text" 
-                                               placeholder="Placa" value="{{ old('licensePlate') }}" 
-                                               pattern="[A-Z0-9]{6,8}" title="Formato de placa inválido" required />
-                                        <label for="licensePlate">Placa</label>
-                                    </div>
-                                    <small class="text-muted">Ejemplo: ABC123 o 1234XYZ</small>
+                                    <small class="text-muted">Escriba el nombre del propietario</small>
                                 </div>
                             </div>
+
+                            <script>
+                            document.getElementById('idUserSearch').addEventListener('input', function() {
+                                const searchValue = this.value;
+                                const options = document.getElementById('userOptions').options;
+                                const hiddenInput = document.getElementById('idUser');
+                                
+                                // Buscar coincidencia exacta
+                                for (let option of options) {
+                                    if (option.value === searchValue) {
+                                        hiddenInput.value = option.getAttribute('data-value');
+                                        return;
+                                    }
+                                }
+                                
+                                // Si no hay coincidencia, limpiar
+                                hiddenInput.value = '';
+                            });
+                            </script>
                             
                             <div class="row mb-3">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-floating mb-3 mb-md-0">
                                         <input class="form-control" name="brand" type="text" 
                                                placeholder="Marca" value="{{ old('brand') }}" required />
@@ -62,7 +73,17 @@
                                     </div>
                                     <small class="text-muted">Ejemplo: Yamaha, Honda</small>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input class="form-control" name="licensePlate" type="text" 
+                                               placeholder="Placa" value="{{ old('licensePlate') }}" title="Formato de placa inválido" required />
+                                        <label for="licensePlate">Placa</label>
+                                    </div>
+                                    <small class="text-muted">Ejemplo: ABC123 o 1234XYZ</small>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
                                     <div class="form-floating">
                                         <input class="form-control" name="model" type="text" 
                                                placeholder="Modelo" value="{{ old('model') }}" required />
@@ -70,7 +91,7 @@
                                     </div>
                                     <small class="text-muted">Ejemplo: XTZ 250, CBR 600</small>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-floating">
                                         <input class="form-control" name="year" type="number" 
                                                min="1900" max="{{ date('Y') + 1 }}" 
@@ -78,41 +99,6 @@
                                         <label for="year">Año</label>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <select class="form-select" name="status" required>
-                                            <option value="1" {{ old('status', 1) == 1 ? 'selected' : '' }}>Activa</option>
-                                            <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactiva</option>
-                                            <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>En Taller</option>
-                                        </select>
-                                        <label for="status">Estado</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input class="form-control" name="mileage" type="number" 
-                                               placeholder="Kilometraje" value="{{ old('mileage', 0) }}" 
-                                               min="0" step="1" />
-                                        <label for="mileage">Kilometraje (km)</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" name="recommendations" id="recommendations" 
-                                          style="height: 100px" placeholder="Recomendaciones">{{ old('recommendations') }}</textarea>
-                                <label for="recommendations">Recomendaciones/Mantenimiento</label>
-                                <small class="text-muted">Detalles importantes sobre el mantenimiento de la moto</small>
-                            </div>
-                            
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" name="specialNotes" id="specialNotes" 
-                                          style="height: 80px" placeholder="Notas especiales">{{ old('specialNotes') }}</textarea>
-                                <label for="specialNotes">Notas Especiales</label>
-                                <small class="text-muted">Modificaciones, accesorios especiales, etc.</small>
                             </div>
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">

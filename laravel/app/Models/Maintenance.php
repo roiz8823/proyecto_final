@@ -21,11 +21,9 @@ class Maintenance extends Model
         'idMotorcycle',
         'idMechanic',
         'diagnosis',
-        'serviceDetails',
         'partsUsed',
         'cost',
         'status',
-        'notes',
         'maintenanceDate',
     ];
 

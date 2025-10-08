@@ -24,7 +24,6 @@
                     <tr>
                         <th>Nro</th>
                         <th>Nombre</th>
-                        <th>Rol</th>
                         <th>Correo</th>
                         <th>Telefono</th>
                         <th>Acción</th>
@@ -34,7 +33,6 @@
                     <tr>
                         <th>Nro</th>
                         <th>Nombre</th>
-                        <th>Rol</th>
                         <th>Correo</th>
                         <th>Telefono</th>
                         <th>Acción</th>
@@ -45,7 +43,6 @@
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $user->firstName }} {{ $user->lastName}} {{ $user->secondLastName }}</td>
-                            <td>{{ $user->role }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>

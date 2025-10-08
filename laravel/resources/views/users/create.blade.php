@@ -22,60 +22,30 @@
                         <form action="{{ route('users.store') }}" method="POST">
                             @csrf
                             <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" name="firstName" type="text" placeholder="Nombre" required />
-                                        <label >Nombre</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating">
-                                        <input class="form-control"  name="lastName" type="text" placeholder="Primer Apellido" required />
-                                        <label >Primer Apellido</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating">
-                                        <input class="form-control" name="secondLastName" type="text" placeholder="Segundo Apellido" />
-                                        <label >Segundo Apellido</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" name="idNumber" type="text" placeholder="Cédula/DNI" required />
-                                        <label >Cédula / DNI</label>
+                                        <input class="form-control" name="firstName" type="text" placeholder="Nombres" required />
+                                        <label >Nombres</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input class="form-control"  name="phone" type="tel" placeholder="Teléfono" />
-                                        <label>Teléfono</label>
+                                        <input class="form-control"  name="lastName" type="text" placeholder="Apellidos" required />
+                                        <label >Apellidos</label>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-floating mb-3">
                                 <input class="form-control" name="email" type="email" placeholder="Correo electronico" required />
                                 <label >Correo electronico</label>
                             </div>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input class="form-control" name="username" type="text" placeholder="Nombre de Usuario" required />
-                                        <label >Nombre de Usuario</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" name="password" type="password" placeholder="Contraseña" required />
-                                        <label >Contraseña</label>
-                                    </div>
-                                </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="password" type="password" placeholder="Contraseña" required />
+                                <label >Contraseña</label>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
@@ -89,17 +59,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input class="form-control" name="address" type="text" placeholder="Dirección" />
-                                        <label >Dirección</label>
+                                        <input class="form-control"  name="phone" type="tel" placeholder="Teléfono" />
+                                        <label>Teléfono</label>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="form-floating mb-3">
-                                <input class="form-control"  name="notes" type="text" placeholder="Notas" />
-                                <label >Notas</label>
+                                <input class="form-control" name="address" type="text" placeholder="Dirección" />
+                                <label >Dirección</label>
                             </div>
-                            
                             <div class="mt-4 mb-0">
                                 <div class="d-grid">
                                     

@@ -3,14 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MotorcycleController;
-use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\ReservationController;
 
 
 
 Route::get('/', function () {
-    return view('pag');
+    return view('index');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -49,8 +51,37 @@ Route::get('/clients', [UserController::class, 'clients']);
 // Rutas para mecanicos
 Route::get('/mechanic', [UserController::class, 'mechanics']);
 
-// Rutas para inventario
-Route::resource('inventory', InventoryController::class);
-
 // rutas de mantenimiento
 Route::resource('maintenances', MaintenanceController::class);
+
+// rutas de reserva
+Route::resource('reservations', ReservationController::class);
+Route::post('/reservations/{reservation}/status', [ReservationController::class, 'updateStatus'])
+    ->name('reservations.updateStatus');
+
+// rutas de Almancen
+Route::resource('store', StoreController::class);
+Route::post('/store/{store}/stock', [StoreController::class, 'updateStock'])->name('store.updateStock');
+Route::get('/store/category/{category}', [StoreController::class, 'byCategory'])->name('store.byCategory');
+
+// Rutas para Clientes
+Route::prefix('clients')->name('cliente.')->middleware(['auth', 'role:client'])->group(function () {
+    Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('dashboard');
+    
+    // Reservas
+    Route::get('/reservas', [ClientController::class, 'reservas'])->name('reservas');
+    Route::post('/reservas', [ClientController::class, 'storeReserva'])->name('reservas.store');
+    Route::put('/reservas/{reservation}', [ClientController::class, 'updateReserva'])->name('reservas.update');
+    Route::delete('/reservas/{reservation}', [ClientController::class, 'cancelReserva'])->name('reservas.cancel');
+    
+    // Historial de Mantenimiento
+    Route::get('/historial-mantenimiento', [ClientController::class, 'historialMantenimiento'])->name('mantenimiento.historial');
+    
+    // Mis Motocicletas
+    Route::get('/mis-motocicletas', [ClientController::class, 'misMotocicletas'])->name('motocicletas');
+    Route::get('/mis-motocicletas/{motorcycle}', [ClientController::class, 'showMotocicleta'])->name('motocicletas.show');
+    
+    // Repuestos
+    Route::get('/repuestos', [ClientController::class, 'repuestos'])->name('repuestos');
+    Route::get('/repuestos/categoria/{category}', [ClientController::class, 'repuestosPorCategoria'])->name('repuestos.categoria');
+});

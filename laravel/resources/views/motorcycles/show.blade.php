@@ -10,12 +10,8 @@
                 </div>
                 <div class="card-body">
                     <div class="row mb-3">
-                        <div class="col-md-4 font-weight-bold">ID:</div>
-                        <div class="col-md-8">{{ $motorcycle->idMotorcycle }}</div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 font-weight-bold">Usuario:</div>
-                        <div class="col-md-8">{{ $motorcycle->user->name ?? 'N/A' }}</div>
+                        <div class="col-md-4 font-weight-bold">Propietario:</div>
+                        <div class="col-md-8">{{ $motorcycle->user->firstName }} {{ $motorcycle->user->lastName }}</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-4 font-weight-bold">Marca:</div>
@@ -32,15 +28,6 @@
                     <div class="row mb-3">
                         <div class="col-md-4 font-weight-bold">Placa:</div>
                         <div class="col-md-8">{{ $motorcycle->licensePlate }}</div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 font-weight-bold">Recomendaciones:</div>
-                        <div class="col-md-8">{{ $motorcycle->recommendations ?? 'Ninguna' }}</div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 font-weight-bold">Estado:</div>
-                        <div class="col-md-8">{{ $motorcycle->status }}
-                        </div>
                     </div>
 
                     <div class="d-flex justify-content-between">
