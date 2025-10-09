@@ -40,18 +40,20 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/clients/dashboard', function () {
         return view('clients.dashboard');
     });
+
+  // Mi Perfil
+Route::get('/clients/mi-perfil', [ClientController::class, 'miPerfil'])->name('cliente.perfil');
+Route::get('/clients/editar-perfil', [ClientController::class, 'editarPerfil'])->name('cliente.perfil.edit');
+Route::post('/clients/actualizar-perfil', [ClientController::class, 'actualizarPerfil'])->name('cliente.perfil.update');
+Route::get('/clients/cambiar-password', [ClientController::class, 'cambiarPassword'])->name('cliente.password.edit');
+Route::post('/clients/actualizar-password', [ClientController::class, 'actualizarPassword'])->name('cliente.password.update');
 });
+
 // Rutas públicas (sin autenticación)
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
-
 Route::post('/register', [UserController::class, 'registerClient'])->name('register.store');
-
-// Ruta de inicio pública
-Route::get('/', function () {
-    return view('index');
-});
 
 // Rutas para motocicletas
 Route::resource('motorcycles', MotorcycleController::class);
@@ -79,7 +81,7 @@ Route::get('/store/category/{category}', [StoreController::class, 'byCategory'])
 Route::prefix('clients')->name('cliente.')->middleware(['auth', 'role:client'])->group(function () {
     Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('dashboard');
     
-// Reservas - CORREGIDAS
+// Reservas - 
     Route::get('/reservas', [ClientController::class, 'reservas'])->name('reservas');
     Route::get('/reservas/nueva', [ClientController::class, 'createReserva'])->name('reservas.create');
     Route::get('/reservas/{reservation}/editar', [ClientController::class, 'editReserva'])->name('reservas.edit');
@@ -93,9 +95,10 @@ Route::prefix('clients')->name('cliente.')->middleware(['auth', 'role:client'])-
 
     // Mis Motocicletas
     Route::get('/mis-motocicletas', [ClientController::class, 'misMotocicletas'])->name('motocicletas');
-    Route::get('/mis-motocicletas/{motorcycle}', [ClientController::class, 'showMotocicleta'])->name('motocicletas.show');
     Route::get('/mis-motocicletas/crear', [ClientController::class, 'createMotocicleta'])->name('motocicletas.create');
+    Route::get('/mis-motocicletas/{motorcycle}', [ClientController::class, 'showMotocicleta'])->name('motocicletas.show');
     Route::post('/mis-motocicletas/guardar', [ClientController::class, 'storeMotocicleta'])->name('motocicletas.store');
+
 
     // Repuestos
     Route::get('/repuestos', [ClientController::class, 'repuestos'])->name('repuestos');

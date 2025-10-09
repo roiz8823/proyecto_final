@@ -326,14 +326,15 @@
                             </form>
                             <div class="text-center mt-3">
                                 <p>¿No tienes una cuenta? 
-                                    <a href="{{ route('register') }}" class="text-decoration-none">
-                                        Regístrate aquí
-                                    </a>
                                 </p>
+                                <a href="{{ route('register') }}" class="text-decoration-none">
+                                        Regístrate aquí
+                                </a>
                             </div>
                             
                             <!-- Redes Sociales -->
                             <div class="social-section">
+                                
                                 <div class="social-title">Síguenos en nuestras redes</div>
                                 <div class="social-icons">
                                     <a href="#" class="social-icon facebook">

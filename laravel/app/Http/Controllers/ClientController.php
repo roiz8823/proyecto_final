@@ -6,8 +6,10 @@ use App\Models\Reservation;
 use App\Models\Maintenance;
 use App\Models\Motorcycle;
 use App\Models\Store;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
@@ -381,5 +383,132 @@ class ClientController extends Controller
         $categories = Store::distinct()->pluck('category')->filter();
 
         return view('clients.repuestos.index', compact('repuestos', 'categories'));
+    }
+
+     /**
+     * Mostrar perfil del cliente
+     */
+    public function miPerfil()
+    {
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+        $motorcycles = Motorcycle::where('idUser', $userId)
+            ->withCount(['reservations', 'maintenances'])
+            ->get();
+
+        return view('clients.perfil.index', compact('user', 'motorcycles'));
+    }
+
+    /**
+     * Mostrar formulario para editar perfil
+     */
+    public function editarPerfil()
+    {
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+
+        return view('clients.perfil.edit', compact('user'));
+    }
+
+    /**
+     * Actualizar información personal del cliente
+     */
+    public function actualizarPerfil(Request $request)
+    {
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+
+        $validator = Validator::make($request->all(), [
+            'firstName' => 'required|string|max:100',
+            'lastName' => 'required|string|max:100',
+            'email' => 'required|email|unique:user,email,' . $userId . ',idUser',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+        ], [
+            'firstName.required' => 'El nombre es obligatorio',
+            'lastName.required' => 'El apellido es obligatorio',
+            'email.required' => 'El correo electrónico es obligatorio',
+            'email.unique' => 'Este correo electrónico ya está en uso',
+            'email.email' => 'El formato del correo no es válido',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        try {
+            $user->firstName = $request->firstName;
+            $user->lastName = $request->lastName;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->updateDate = now();
+            $user->save();
+
+            return redirect()->route('cliente.perfil')
+                ->with('success', 'Perfil actualizado correctamente');
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Error al actualizar el perfil: ' . $e->getMessage())
+                ->withInput();
+        }
+    }
+
+    /**
+     * Mostrar formulario para cambiar contraseña
+     */
+    public function cambiarPassword()
+    {
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+
+        return view('clients.perfil.password', compact('user'));
+    }
+
+    /**
+     * Actualizar contraseña del cliente
+     */
+    public function actualizarPassword(Request $request)
+    {
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ], [
+            'current_password.required' => 'La contraseña actual es obligatoria',
+            'new_password.required' => 'La nueva contraseña es obligatoria',
+            'new_password.min' => 'La nueva contraseña debe tener al menos 6 caracteres',
+            'new_password.confirmed' => 'Las contraseñas no coinciden',
+        ]);
+
+        // Verificar contraseña actual
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->route('cliente.password.edit')
+                ->with('error', 'La contraseña actual es incorrecta');
+        }
+
+        if ($validator->fails()) {
+            return redirect()->route('cliente.password.edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        try {
+            $user->password = Hash::make($request->new_password);
+            $user->updateDate = now();
+            $user->save();
+
+            return redirect()->route('cliente.password.edit')
+                ->with('success', 'Contraseña actualizada correctamente');
+
+        } catch (\Exception $e) {
+            return redirect()->route('cliente.password.edit')
+                ->with('error', 'Error al actualizar la contraseña: ' . $e->getMessage());
+        }
     }
 }

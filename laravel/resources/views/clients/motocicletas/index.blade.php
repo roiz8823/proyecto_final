@@ -12,7 +12,7 @@
                 <p class="page-subtitle">Gestiona todas tus motocicletas registradas en el taller</p>
             </div>
             <a href="{{ route('cliente.motocicletas.create') }}" class="btn btn-warning-custom">
-                <i class="fas fa-plus me-1"></i> Agregar Nueva Motocicleta
+                <i class="fas fa-plus me-1"></i> Agregar Motocicleta
             </a>
         </div>
     </div>

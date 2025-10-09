@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{{ route('cliente.perfil') }}" class="sidebar-link">
                     <i class="fas fa-user-circle"></i>
                     <span>Mi Perfil</span>
                 </a>

@@ -434,17 +434,17 @@
             <h2 class="section-title">Sobre Nosotros</h2>
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h3 class="mb-4 navy-bg">Más de 15 años de experiencia en el sector</h3>
+                    <h3 class="mb-4">Más de 3 años de experiencia en el sector</h3>
                     <p class="lead text-accent">En Taller Izquierdo nos especializamos en ofrecer servicios de mantenimiento y reparación para todo tipo de motocicletas.</p>
                     <p>Nuestro equipo de mecánicos certificados garantiza que tu moto reciba el mejor cuidado posible, utilizando repuestos de calidad y las herramientas más modernas para diagnósticos precisos.</p>
                     <p>Nos enorgullece nuestro servicio al cliente y nuestra transparencia en cada trabajo que realizamos.</p>
                     <div class="d-flex mt-4 flex-wrap">
                         <div class="me-4 text-center mb-3">
-                            <p class="stats-number">500+</p>
+                            <p class="stats-number">100+</p>
                             <p class="stats-label">Clientes Satisfechos</p>
                         </div>
                         <div class="me-4 text-center mb-3">
-                            <p class="stats-number">15+</p>
+                            <p class="stats-number">3+</p>
                             <p class="stats-label">Años de Experiencia</p>
                         </div>
                         <div class="text-center mb-3">
@@ -473,7 +473,7 @@
                             </div>
                             <h5>Mantenimiento General</h5>
                             <p class="text-accent">Servicio completo de mantenimiento que incluye cambio de aceite, ajuste de frenos, revisión de suspensión y más para mantener tu moto en óptimas condiciones.</p>
-                            <a href="#reservas" class="btn btn-outline-primary mt-3">Solicitar</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -485,7 +485,7 @@
                             </div>
                             <h5>Cambio de Aceite y Filtros</h5>
                             <p class="text-accent">Utilizamos los mejores aceites y filtros del mercado para garantizar el rendimiento y la vida útil del motor de tu motocicleta.</p>
-                            <a href="#reservas" class="btn btn-outline-primary mt-3">Solicitar</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -497,7 +497,7 @@
                             </div>
                             <h5>Reparación de Frenos</h5>
                             <p class="text-accent">Revisión completa del sistema de frenos, cambio de pastillas, líquido de frenos y ajuste para garantizar tu seguridad en la carretera.</p>
-                            <a href="#reservas" class="btn btn-outline-primary mt-3">Solicitar</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -509,7 +509,7 @@
                             </div>
                             <h5>Servicio de Baterías</h5>
                             <p class="text-accent">Prueba, carga y reemplazo de baterías para evitar quedarte varado. Garantizamos baterías de alta calidad y duración.</p>
-                            <a href="#reservas" class="btn btn-outline-primary mt-3">Solicitar</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -521,7 +521,7 @@
                             </div>
                             <h5>Cambio de Neumáticos</h5>
                             <p class="text-accent">Ofrecemos neumáticos de las mejores marcas con servicio de instalación profesional y balanceo preciso para mayor seguridad.</p>
-                            <a href="#reservas" class="btn btn-outline-primary mt-3">Solicitar</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -533,7 +533,7 @@
                             </div>
                             <h5>Diagnóstico Computarizado</h5>
                             <p class="text-accent">Usamos tecnología de punta para diagnosticar problemas electrónicos y mecánicos con precisión, ahorrando tiempo y dinero.</p>
-                            <a href="#reservas" class="btn btn-outline-primary mt-3">Solicitar</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -548,7 +548,7 @@
             <div class="row">
                 <div class="col-md-3 mb-4">
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1620146305126-cc4d9ab6c098?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cambio de aceite">
+                        <img src="https://www.shutterstock.com/image-photo/portrait-man-mechanic-garage-workshop-600nw-2185928805.jpg" alt="Cambio de aceite">
                         <div class="gallery-overlay">
                             <div class="text-white">
                                 <h5>Cambio de Aceite</h5>
@@ -570,7 +570,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1571068316341-6dde3f343911?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Reparación de frenos">
+                        <img src="https://www.mundomotero.com/wp-content/uploads/2016/08/Mantenimiento-del-sistema-de-frenos-de-una-moto.jpg" alt="Reparación de frenos">
                         <div class="gallery-overlay">
                             <div class="text-white">
                                 <h5>Sistema de Frenos</h5>
@@ -697,14 +697,13 @@
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <h5 class="text-uppercase mb-4">Taller Izquierdo</h5>
-                    <p>Expertos en reparación y mantenimiento de motocicletas con más de 15 años de experiencia en el mercado.</p>
+                    <p>Expertos en reparación y mantenimiento de motocicletas con más de 3 años de experiencia en el mercado.</p>
                 </div>
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <h5 class="text-uppercase mb-4">Enlaces Rápidos</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#inicio" class="text-white">Inicio</a></li>
                         <li class="mb-2"><a href="#servicios" class="text-white">Servicios</a></li>
-                        <li class="mb-2"><a href="#reservas" class="text-white">Reservas</a></li>
                         <li><a href="#contacto" class="text-white">Contacto</a></li>
                     </ul>
                 </div>
@@ -715,11 +714,6 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                    <p>Suscríbete para recibir promociones</p>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Tu correo electrónico">
-                        <button class="btn btn-primary" type="button">Suscribir</button>
                     </div>
                 </div>
             </div>

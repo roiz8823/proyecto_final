@@ -22,7 +22,7 @@
         <div class="col-lg-8">
             <!-- Tarjeta de Información General -->
             <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-secondary text-white">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-info-circle me-2"></i>Información General
                     </h5>
@@ -69,7 +69,7 @@
 
             <!-- Historial de Mantenimientos -->
             <div class="card mb-4">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-secondary text-white">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-tools me-2"></i>Historial de Mantenimientos
                         <span class="badge bg-light text-dark ms-2">{{ $motorcycle->maintenances->count() }}</span>
@@ -121,7 +121,7 @@
 
             <!-- Historial de Reservas -->
             <div class="card">
-                <div class="card-header bg-success text-white">
+                <div class="card-header bg-secondary text-white">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-calendar-check me-2"></i>Historial de Reservas
                         <span class="badge bg-light text-dark ms-2">{{ $motorcycle->reservations->count() }}</span>

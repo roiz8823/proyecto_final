@@ -21,7 +21,7 @@
         <!-- Información Principal -->
         <div class="col-lg-8">
             <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-secondary text-white">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-info-circle me-2"></i>Información del Servicio
                     </h5>
@@ -74,7 +74,7 @@
 
             <!-- Diagnóstico -->
             <div class="card mb-4">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-secondary text-white">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-stethoscope me-2"></i>Diagnóstico
                     </h5>
@@ -90,7 +90,7 @@
 
             <!-- Partes Utilizadas -->
             <div class="card mb-4">
-                <div class="card-header bg-warning text-dark">
+                <div class="card-header bg-secondary text-dark">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-cogs me-2"></i>Partes Utilizadas
                     </h5>
@@ -125,14 +125,14 @@
 
             <!-- Información de la Motocicleta -->
             <div class="card">
-                <div class="card-header bg-success text-white">
+                <div class="card-header bg-secondary text-white">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-motorcycle me-2"></i>Información de la Motocicleta
                     </h5>
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-3">
-                        <i class="fas fa-motorcycle fa-3x text-success"></i>
+                        <i class="fas fa-motorcycle fa-3x text-black"></i>
                     </div>
                     <table class="table table-sm table-borderless">
                         <tr>

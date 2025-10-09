@@ -20,7 +20,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-secondary text-white">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-motorcycle me-2"></i>Información de la Motocicleta
                     </h5>
@@ -104,7 +104,7 @@
                                        id="licensePlate" 
                                        name="licensePlate" 
                                        value="{{ old('licensePlate') }}" 
-                                       placeholder="Ej: ABC123"
+                                       placeholder="Ej: ABC-123"
                                        required>
                                 @error('licensePlate')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -131,7 +131,7 @@
 
             <!-- Información adicional -->
             <div class="card mt-4">
-                <div class="card-header bg-info text-white">
+                <div class="card-header bg-secondary text-white">
                     <h6 class="card-title mb-0">
                         <i class="fas fa-info-circle me-2"></i>Información Importante
                     </h6>
