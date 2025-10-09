@@ -13,7 +13,7 @@
     <!-- Filtros y Búsqueda -->
     <div class="filter-section">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label">Filtrar por categoría:</label>
                 <div class="d-flex flex-wrap gap-2">
                     <a href="{{ route('cliente.repuestos') }}" class="btn btn-primary-custom btn-sm">
@@ -27,13 +27,13 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-md-6">
+             <!-- <div class="col-md-6">
                 <label class="form-label">Buscar repuesto:</label>
                 <div class="search-box">
                     <i class="fas fa-search search-icon"></i>
                     <input type="text" class="form-control" id="searchRepuestos" placeholder="Nombre del repuesto...">
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -77,7 +77,7 @@
             </div>
             
             <div class="text-center mb-3">
-                <h3 class="text-success mb-1">${{ number_format($repuesto->price, 2) }}</h3>
+                <h3 class="text-success mb-1">Bs {{ number_format($repuesto->price, 2) }}</h3>
                 <small class="text-muted">Precio unitario</small>
             </div>
             

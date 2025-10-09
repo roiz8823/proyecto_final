@@ -42,4 +42,14 @@ class Motorcycle extends Model
     {
         return $this->hasMany(Maintenance::class, 'idMotorcycle', 'idMotorcycle');
     }
+    // En el modelo Motorcycle
+    public function getStatusTextAttribute()
+    {
+        return $this->status ? 'Activa' : 'Inactiva';
+    }
+
+    public function getStatusClassAttribute()
+    {
+        return $this->status ? 'confirmed' : 'cancelled';
+    }
 }

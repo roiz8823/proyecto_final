@@ -10,52 +10,54 @@
 
     <!-- Dashboard Grid -->
     <div class="dashboard-grid">
-        <!-- Card 1: Reservas -->
-        <div class="dashboard-card">
-            <div>
-                <div class="card-icon">
-                    <i class="fas fa-calendar-plus"></i>
+        <!-- Fila 1: 2 cards arriba -->
+        <div class="dashboard-row">
+            <!-- Card 1: Reservas -->
+            <div class="dashboard-card">
+                <div>
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                    <h3 class="card-title">Hacer Reserva</h3>
                 </div>
-                <h3 class="card-title">Hacer Reserva</h3>
-                <p class="card-description">Agenda un mantenimiento para tu motocicleta</p>
+                <a href="{{ route('cliente.reservas') }}" class="card-btn">Reservar Ahora</a>
             </div>
-            <a href="{{ route('cliente.reservas') }}" class="card-btn">Reservar Ahora</a>
+
+            <!-- Card 2: Historial -->
+            <div class="dashboard-card">
+                <div>
+                    <div class="card-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="card-title">Historial de Mantenimiento</h3>
+                </div>
+                <a href="{{ route('cliente.mantenimiento.historial') }}" class="card-btn">Ver Historial</a>
+            </div>
         </div>
 
-        <!-- Card 2: Historial -->
-        <div class="dashboard-card">
-            <div>
-                <div class="card-icon">
-                    <i class="fas fa-clipboard-list"></i>
+        <!-- Fila 2: 2 cards abajo -->
+        <div class="dashboard-row">
+            <!-- Card 3: Motocicletas -->
+            <div class="dashboard-card">
+                <div>
+                    <div class="card-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3 class="card-title">Mis Motocicletas</h3>
                 </div>
-                <h3 class="card-title">Historial de Mantenimiento</h3>
-                <p class="card-description">Revisa el historial de servicios de tus motocicletas</p>
+                <a href="{{ route('cliente.motocicletas') }}" class="card-btn">Ver Motos</a>
             </div>
-            <a href="{{ route('cliente.mantenimiento.historial') }}" class="card-btn">Ver Historial</a>
-        </div>
 
-        <!-- Card 3: Motocicletas -->
-        <div class="dashboard-card">
-            <div>
-                <div class="card-icon">
-                    <i class="fas fa-motorcycle"></i>
+            <!-- Card 4: Repuestos -->
+            <div class="dashboard-card">
+                <div>
+                    <div class="card-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="card-title">Repuestos Disponibles</h3>
                 </div>
-                <h3 class="card-title">Mis Motocicletas</h3>
-                <p class="card-description">Gestiona tus motocicletas registradas</p>
+                <a href="{{ route('cliente.repuestos') }}" class="card-btn">Ver Repuestos</a>
             </div>
-            <a href="{{ route('cliente.motocicletas') }}" class="card-btn">Ver Motos</a>
-        </div>
-
-        <!-- Card 4: Repuestos -->
-        <div class="dashboard-card">
-            <div>
-                <div class="card-icon">
-                    <i class="fas fa-cog"></i>
-                </div>
-                <h3 class="card-title">Repuestos Disponibles</h3>
-                <p class="card-description">Consulta los repuestos disponibles en el taller</p>
-            </div>
-            <a href="{{ route('cliente.repuestos') }}" class="card-btn">Ver Repuestos</a>
         </div>
     </div>
 </div>
@@ -94,10 +96,16 @@
 }
 
 .dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 25px;
     margin-bottom: 40px;
+}
+
+.dashboard-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
 }
 
 .dashboard-card {
@@ -166,7 +174,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    .dashboard-grid {
+    .dashboard-row {
         grid-template-columns: 1fr;
         gap: 20px;
     }

@@ -38,12 +38,6 @@
                     <span>Mi Perfil</span>
                 </a>
             </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="fas fa-question-circle"></i>
-                    <span>Ayuda</span>
-                </a>
-            </li>
             @endif
         </ul>
     </div>

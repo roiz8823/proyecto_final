@@ -393,9 +393,6 @@
                         <a class="nav-link" href="#testimonios">Testimonios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#reservas">Reservas</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contáctenos</a>
                     </li>
                 </ul>
@@ -414,7 +411,9 @@
                     <h1 class="display-4 fw-bold mb-4">Expertos en Reparación y Mantenimiento de Motos</h1>
                     <p class="lead mb-4">Servicios de calidad con los mejores profesionales y repuestos garantizados</p>
                     <div class="d-flex justify-content-center gap-3 flex-wrap">
-                        <a href="#reservas" class="btn btn-warning btn-lg px-4 py-3 fw-bold">Reserva tu Servicio</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary">
+                            <i class="fas fa-user-plus me-2"></i>Registrarse
+                        </a>
                         <a href="#servicios" class="btn btn-outline-light btn-lg px-4 py-3 fw-bold">Nuestros Servicios</a>
                     </div>
                 </div>
@@ -635,77 +634,6 @@
                 </div>
                 <div class="col-lg-4">
                     <a href="#contacto" class="btn btn-warning btn-lg px-4 py-3 fw-bold">Contactar Emergencia</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reservas Section -->
-    <section id="reservas" class="py-5 bg-light-custom">
-        <div class="container">
-            <h2 class="section-title">Reserva tu Servicio</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                     <div class="card-body">
-                        <form action="{{ route('users.store') }}" method="POST">
-                            @csrf
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3 mb-md-0">
-                                        <input class="form-control" name="firstName" type="text" placeholder="Nombres" required />
-                                        <label >Nombres</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input class="form-control"  name="lastName" type="text" placeholder="Apellidos" required />
-                                        <label >Apellidos</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input class="form-control" name="email" type="email" placeholder="Correo electronico" required />
-                                <label >Correo electronico</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input class="form-control" name="password" type="password" placeholder="Contraseña" required />
-                                <label >Contraseña</label>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <select class="form-select" name="role" required>
-                                            <option value="admin">Administrador</option>
-                                            <option value="mechanic">Mecánico</option>
-                                            <option value="client">Cliente</option>
-                                        </select>
-                                        <label >Rol</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input class="form-control"  name="phone" type="tel" placeholder="Teléfono" />
-                                        <label>Teléfono</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-floating mb-3">
-                                <input class="form-control" name="address" type="text" placeholder="Dirección" />
-                                <label >Dirección</label>
-                            </div>
-                            <div class="mt-4 mb-0">
-                                <div class="d-grid">
-                                    
-                                    <button class="btn btn-primary btn-lg py-3" type="submit">Registrar Usuario</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    
                 </div>
             </div>
         </div>

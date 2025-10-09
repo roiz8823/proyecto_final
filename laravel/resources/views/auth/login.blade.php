@@ -324,10 +324,12 @@
                                     <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
                                 </button>
                             </form>
-                            
                             <div class="text-center mt-3">
-                                <span class="text-muted">¿Es tu primera vez? </span>
-                                <a href="#" class="register-link">Regístrate aquí</a>
+                                <p>¿No tienes una cuenta? 
+                                    <a href="{{ route('register') }}" class="text-decoration-none">
+                                        Regístrate aquí
+                                    </a>
+                                </p>
                             </div>
                             
                             <!-- Redes Sociales -->

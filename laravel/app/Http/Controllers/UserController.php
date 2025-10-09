@@ -107,6 +107,53 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Usuario eliminado.');
     }
 
+    /**
+     * Registrar nuevo cliente desde formulario público
+     */
+    public function registerClient(Request $request)
+    {
+        $request->validate([
+            'firstName' => 'required|string|max:100',
+            'lastName' => 'required|string|max:100',
+            'email' => 'required|email|unique:user',
+            'password' => 'required|min:6|confirmed',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+        ], [
+            'firstName.required' => 'El nombre es obligatorio',
+            'lastName.required' => 'El apellido es obligatorio',
+            'email.required' => 'El correo electrónico es obligatorio',
+            'email.unique' => 'Este correo electrónico ya está registrado',
+            'password.required' => 'La contraseña es obligatoria',
+            'password.min' => 'La contraseña debe tener al menos 6 caracteres',
+            'password.confirmed' => 'Las contraseñas no coinciden',
+        ]);
+
+        try {
+            User::create([
+                'firstName' => $request->firstName,
+                'lastName' => $request->lastName,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+                'role' => 'client', // Siempre se crea como cliente
+                'address' => $request->address,
+                'status' => 1, // Activo por defecto
+                'registrationDate' => now(),
+            ]);
+
+            // Opcional: Iniciar sesión automáticamente después del registro
+            // Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+
+            return redirect()->route('login')
+                ->with('success', '¡Registro exitoso! Ahora puedes iniciar sesión.');
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Error al registrar el usuario: ' . $e->getMessage())
+                ->withInput();
+        }
+    }
     public function clients()
     {
         $users = User::where('role','=','client')->get();

@@ -27,13 +27,18 @@ class Maintenance extends Model
         'maintenanceDate',
     ];
 
-     // Relación con la motocicleta
+    protected $casts = [
+        'maintenanceDate' => 'datetime',
+        'cost' => 'decimal:2',
+    ];
+
+    // Relación con la motocicleta
     public function motorcycle()
     {
         return $this->belongsTo(Motorcycle::class, 'idMotorcycle', 'idMotorcycle');
     }
 
-    // Relación con el mecánico
+    // Relación con el mecánico - CORREGIDA
     public function mechanic()
     {
         return $this->belongsTo(User::class, 'idMechanic', 'idUser');
@@ -48,5 +53,22 @@ class Maintenance extends Model
             2 => 'Completado',
             3 => 'Cancelado'
         ][$this->status] ?? 'Desconocido';
+    }
+
+    // Accesor para la clase CSS del estado
+    public function getStatusClassAttribute()
+    {
+        return [
+            0 => 'warning',    // Pendiente
+            1 => 'info',       // En Progreso
+            2 => 'success',    // Completado
+            3 => 'danger'      // Cancelado
+        ][$this->status] ?? 'secondary';
+    }
+
+    // Accesor para el costo formateado
+    public function getFormattedCostAttribute()
+    {
+        return 'Bs ' . number_format($this->cost, 2);
     }
 }

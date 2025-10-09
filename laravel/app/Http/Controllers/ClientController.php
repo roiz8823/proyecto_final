@@ -33,7 +33,7 @@ class ClientController extends Controller
         return view('clients.dashboard', compact('stats'));
     }
 
-    /**
+     /**
      * Opción 1: Gestión de Reservas (Ver, Crear, Editar)
      */
     public function reservas()
@@ -52,14 +52,43 @@ class ClientController extends Controller
             ->orderBy('reservationTime', 'desc')
             ->paginate(10);
 
-        // Horarios disponibles
-        $availableTimes = [
-            '08:00', '09:00', '10:00', '11:00', 
-            '12:00', '13:00', '14:00', '15:00', 
-            '16:00', '17:00', '18:00'
-        ];
+        return view('clients.reservas.index', compact('reservations', 'motorcycles'));
+    }
 
-        return view('clients.reservas.index', compact('reservations', 'motorcycles', 'availableTimes'));
+    public function createReserva()
+    {
+        $userId = Auth::id();
+        $motorcycles = Motorcycle::where('idUser', $userId)->where('status', 1)->get();
+        $availableTimes = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+        
+        return view('clients.reservas.create', compact('motorcycles', 'availableTimes'));
+    }
+
+    public function editReserva(Reservation $reservation)
+    {
+        $userId = Auth::id();
+        
+        // Verificar que la reserva pertenece al usuario
+        $userReservation = Reservation::where('idReservation', $reservation->idReservation)
+            ->whereHas('motorcycle', function($query) use ($userId) {
+                $query->where('idUser', $userId);
+            })
+            ->first();
+
+        if (!$userReservation) {
+            abort(403, 'No tienes permiso para editar esta reserva.');
+        }
+
+        // Solo permitir editar si está pendiente
+        if ($reservation->status != 1) {
+            return redirect()->route('cliente.reservas')
+                ->with('error', 'Solo puedes editar reservas pendientes.');
+        }
+
+        $availableTimes = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'];
+        
+        // CORRECCIÓN: Cambié 'clients.reservas' por 'clients.reservas.edit'
+        return view('clients.reservas.edit', compact('reservation', 'availableTimes'));
     }
 
     /**
@@ -107,12 +136,13 @@ class ClientController extends Controller
             'status' => 1 // Pendiente
         ]);
 
-        return redirect()->route('clients.reservas')
+        // CORRECCIÓN: Cambié 'clients.reservas' por 'cliente.reservas'
+        return redirect()->route('cliente.reservas')
                         ->with('success', 'Reserva creada exitosamente. Estará pendiente de confirmación.');
     }
 
     /**
-     * Actualizar reserva existente
+     * Actualizar reserva existente - ESTA ES LA FUNCIÓN QUE FALTABA
      */
     public function updateReserva(Request $request, Reservation $reservation)
     {
@@ -154,9 +184,14 @@ class ClientController extends Controller
             ])->withInput();
         }
 
-        $reservation->update($validated);
+        // Actualizar la reserva
+        $reservation->update([
+            'reservationDate' => $validated['reservationDate'],
+            'reservationTime' => $validated['reservationTime'],
+            'notes' => $validated['notes']
+        ]);
 
-        return redirect()->route('clients.reservas')
+        return redirect()->route('cliente.reservas')
                         ->with('success', 'Reserva actualizada exitosamente.');
     }
 
@@ -185,7 +220,8 @@ class ClientController extends Controller
 
         $reservation->delete();
 
-        return redirect()->route('clients.reservas')
+        // CORRECCIÓN: Cambié 'clients.reservas' por 'cliente.reservas'
+        return redirect()->route('cliente.reservas')
                         ->with('success', 'Reserva cancelada exitosamente.');
     }
 
@@ -196,14 +232,34 @@ class ClientController extends Controller
     {
         $userId = Auth::id();
         
-        $maintenances = Maintenance::with(['motorcycle', 'mechanic'])
-            ->whereHas('motorcycle', function($query) use ($userId) {
-                $query->where('idUser', $userId);
-            })
-            ->orderBy('maintenanceDate', 'desc')
-            ->paginate(10);
+        $maintenances = Maintenance::with([
+            'motorcycle', 
+            'mechanic' // Cargar la relación con el mecánico
+        ])
+        ->whereHas('motorcycle', function($query) use ($userId) {
+            $query->where('idUser', $userId);
+        })
+        ->orderBy('maintenanceDate', 'desc')
+        ->paginate(10);
 
         return view('clients.mantenimiento.historial', compact('maintenances'));
+    }
+    /**
+     * Mostrar detalles de un mantenimiento específico
+     */
+    public function showMantenimiento(Maintenance $maintenance)
+    {
+        $userId = Auth::id();
+        
+        // Verificar que el mantenimiento pertenece a una motocicleta del usuario
+        if ($maintenance->motorcycle->idUser != $userId) {
+            abort(403, 'No tienes permiso para ver este mantenimiento.');
+        }
+
+        // Cargar relaciones necesarias
+        $maintenance->load(['motorcycle', 'mechanic']);
+
+        return view('clients.mantenimiento.show', compact('maintenance'));
     }
 
     /**
@@ -239,6 +295,61 @@ class ClientController extends Controller
         $motorcycle->load(['reservations', 'maintenances.mechanic']);
 
         return view('clients.motocicletas.show', compact('motorcycle'));
+    }
+     /**
+     * Mostrar formulario para crear nueva motocicleta
+     */
+    public function createMotocicleta()
+    {
+        return view('clients.motocicletas.create');
+    }
+
+    /**
+     * Guardar nueva motocicleta
+     */
+    public function storeMotocicleta(Request $request)
+    {
+        $userId = Auth::id();
+
+        // Validación de datos
+        $validator = Validator::make($request->all(), [
+            'brand' => 'required|string|max:100',
+            'model' => 'required|string|max:100',
+            'year' => 'required|integer|min:1900|max:' . (date('Y') + 1),
+            'licensePlate' => 'required|string|max:20|unique:motorcycle,licensePlate',
+        ], [
+            'brand.required' => 'La marca es obligatoria',
+            'model.required' => 'El modelo es obligatorio',
+            'year.required' => 'El año es obligatorio',
+            'licensePlate.required' => 'La placa es obligatoria',
+            'licensePlate.unique' => 'Esta placa ya está registrada',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        try {
+            // Crear nueva motocicleta
+            $motorcycle = Motorcycle::create([
+                'idUser' => $userId,
+                'brand' => $request->brand,
+                'model' => $request->model,
+                'year' => $request->year,
+                'licensePlate' => strtoupper($request->licensePlate),
+                'status' => 1 // Activa por defecto
+            ]);
+
+            return redirect()->route('cliente.motocicletas')
+                ->with('success', '¡Motocicleta registrada exitosamente!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Error al registrar la motocicleta: ' . $e->getMessage())
+                ->withInput();
+        }
     }
 
     /**

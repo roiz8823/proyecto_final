@@ -684,6 +684,52 @@
             border-color: var(--slate);
             color: white;
         }
+        .btn-warning-custom {
+    background: var(--gold);
+    border: 2px solid var(--gold);
+    color: var(--navy);
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-warning-custom:hover {
+    background: transparent;
+    color: var(--navy);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(249, 205, 22, 0.3);
+}
+
+.btn-warning.btn-sm {
+    background: var(--gold);
+    border: 2px solid var(--gold);
+    color: var(--navy);
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-warning.btn-sm:hover {
+    background: transparent;
+    color: var(--navy);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+.badge-success {
+    background: rgba(40, 167, 69, 0.15);
+    color: #155724;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
     </style>
 </head>
 <body>

@@ -3,11 +3,18 @@
 @section('content')
 <div class="container-fluid px-4">
     <!-- Header -->
-    <div class="page-header">
-        <h1 class="page-title">
-            <i class="fas fa-motorcycle me-2"></i>Mis Motocicletas
-        </h1>
-        <p class="page-subtitle">Gestiona todas tus motocicletas registradas en el taller</p>
+   <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="page-title">
+                    <i class="fas fa-motorcycle me-2"></i>Mis Motocicletas
+                </h1>
+                <p class="page-subtitle">Gestiona todas tus motocicletas registradas en el taller</p>
+            </div>
+            <a href="{{ route('cliente.motocicletas.create') }}" class="btn btn-warning-custom">
+                <i class="fas fa-plus me-1"></i> Agregar Nueva Motocicleta
+            </a>
+        </div>
     </div>
 
     <!-- Estadísticas -->

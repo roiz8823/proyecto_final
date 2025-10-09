@@ -13,7 +13,7 @@
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                     @csrf
                     <button type="submit" class="btn btn-logout">
-                        <i class="fas fa-sign-out-alt me-1"></i> Salir
+                        <i class="fas fa-sign-out-alt me-1"></i> Cerrar sesion
                     </button>
                 </form>
             </div>

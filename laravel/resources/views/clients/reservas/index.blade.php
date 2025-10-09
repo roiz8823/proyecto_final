@@ -11,15 +11,23 @@
                 </h1>
                 <p class="page-subtitle">Administra tus reservas de mantenimiento</p>
             </div>
-            <button class="btn btn-warning-custom" data-bs-toggle="modal" data-bs-target="#nuevaReservaModal">
+            <!-- CORRECCIÓN: Ruta correcta -->
+            <a href="{{ route('cliente.reservas.create') }}" class="btn btn-warning-custom">
                 <i class="fas fa-plus me-1"></i> Nueva Reserva
-            </button>
+            </a>
         </div>
     </div>
 
     @if(session('success'))
         <div class="alert alert-success alert-custom alert-info-custom alert-dismissible fade show" role="alert">
             <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-custom alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>{{ session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -54,7 +62,7 @@
         
         <div class="table-responsive">
             <table class="table table-hover table-custom">
-                <thead>
+                <thead class="table-light">
                     <tr>
                         <th>Motocicleta</th>
                         <th>Fecha</th>
@@ -97,21 +105,23 @@
                         <td>
                             <div class="btn-group btn-group-sm">
                                 @if($reservation->status == 1)
-                                    <button class="btn btn-warning btn-sm" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#editarReservaModal"
-                                            data-reservation="{{ $reservation }}">
+                                    <!-- CORRECCIÓN: Ruta correcta -->
+                                    <a href="{{ route('cliente.reservas.edit', $reservation->idReservation) }}" 
+                                       class="btn btn-warning btn-sm" title="Editar reserva">
                                         <i class="fas fa-edit"></i>
-                                    </button>
+                                    </a>
                                     <form action="{{ route('cliente.reservas.cancel', $reservation->idReservation) }}" 
                                           method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('¿Cancelar esta reserva?')">
+                                                onclick="return confirm('¿Cancelar esta reserva?')"
+                                                title="Cancelar reserva">
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </form>
+                                @else
+                                    <span class="text-muted small">No editable</span>
                                 @endif
                             </div>
                         </td>
@@ -138,8 +148,4 @@
         </div>
     </div>
 </div>
-
-<!-- Modales (mantener igual que antes) -->
-<!-- ... -->
-
 @endsection
