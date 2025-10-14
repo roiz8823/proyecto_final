@@ -20,7 +20,7 @@
                         <!-- Header del dropdown -->
                         <li class="dropdown-header">
                             <div class="d-flex align-items-center">
-                                <div class="avatar-circle bg-secondary rounded-circle d-flex align-items-center justify-content-center me-3"
+                                <div class="avatar-circle bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
                                     style="width: 40px; height: 40px;">
                                     <i class="fas fa-user text-white"></i>
                                 </div>
@@ -31,6 +31,16 @@
                             </div>
                         </li>
                         <li><hr class="dropdown-divider"></li>
+                        
+                        <!-- Ver Perfil -->
+                        <li>
+                            <a class="dropdown-item" href="{{ route('mechanic.profile') }}">
+                                <i class="fas fa-user-circle me-2 text-primary"></i>
+                                Ver Perfil
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        
                         <!-- Cerrar sesión -->
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
@@ -44,4 +54,4 @@
                     </ul>
                 </li>
             </ul>
-        </nav>
+</nav>

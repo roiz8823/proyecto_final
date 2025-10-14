@@ -8,6 +8,8 @@ use App\Http\Controllers\MotorcycleController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\MechaniController;
 
 
 
@@ -77,6 +79,17 @@ Route::resource('store', StoreController::class);
 Route::post('/store/{store}/stock', [StoreController::class, 'updateStock'])->name('store.updateStock');
 Route::get('/store/category/{category}', [StoreController::class, 'byCategory'])->name('store.byCategory');
 
+// rutas de ventas
+Route::resource('sales', SaleController::class);
+Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
+Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
+Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');
+Route::get('/sales/{id}', [SaleController::class, 'show'])->name('sales.show');
+Route::get('/sales/{id}/edit', [SaleController::class, 'edit'])->name('sales.edit');
+Route::put('/sales/{id}', [SaleController::class, 'update'])->name('sales.update');
+Route::delete('/sales/{id}', [SaleController::class, 'destroy'])->name('sales.destroy');
+
+
 // Rutas para Clientes
 Route::prefix('clients')->name('cliente.')->middleware(['auth', 'role:client'])->group(function () {
     Route::get('/dashboard', [ClientController::class, 'dashboard'])->name('dashboard');
@@ -99,9 +112,54 @@ Route::prefix('clients')->name('cliente.')->middleware(['auth', 'role:client'])-
     Route::get('/mis-motocicletas/{motorcycle}', [ClientController::class, 'showMotocicleta'])->name('motocicletas.show');
     Route::post('/mis-motocicletas/guardar', [ClientController::class, 'storeMotocicleta'])->name('motocicletas.store');
 
-
     // Repuestos
     Route::get('/repuestos', [ClientController::class, 'repuestos'])->name('repuestos');
     Route::get('/repuestos/categoria/{category}', [ClientController::class, 'repuestosPorCategoria'])->name('repuestos.categoria');
+});
+
+
+// Rutas del Mecánico
+Route::prefix('mechanic')->name('mechanic.')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [MechaniController::class, 'dashboard'])->name('dashboard');
+    
+    // Clientes
+    Route::get('/clients', [MechaniController::class, 'clients'])->name('clients.index');
+    Route::get('/clients/{client}', [MechaniController::class, 'showClient'])->name('clients.show');
+    
+    // Motocicletas
+    Route::get('/motorcycles', [MechaniController::class, 'motorcycles'])->name('motorcycles.index');
+    Route::get('/motorcycles/{motorcycle}', [MechaniController::class, 'showMotorcycle'])->name('motorcycles.show'); 
+   
+
+
+
+    // Mantenimientos
+    Route::get('/maintenances', [MechaniController::class, 'maintenances'])->name('maintenances.index');
+    Route::get('/maintenances/create', [MechaniController::class, 'createMaintenance'])->name('maintenances.create');
+    Route::post('/maintenances', [MechaniController::class, 'storeMaintenance'])->name('maintenances.store');
+    Route::get('/maintenances/{maintenance}', [MechaniController::class, 'showMaintenance'])->name('maintenances.show');
+
+    // Reservas
+    Route::get('/reservations', [MechaniController::class, 'reservations'])->name('reservations.index');
+    Route::get('/reservations/create', [MechaniController::class, 'createReservation'])->name('reservations.create');
+    Route::post('/reservations', [MechaniController::class, 'storeReservation'])->name('reservations.store');
+    Route::get('/reservations/{reservation}', [MechaniController::class, 'showReservation'])->name('reservations.show');
+    Route::post('/reservations/{reservation}/status', [MechaniController::class, 'updateReservationStatus'])->name('reservations.updateStatus'); 
+
+    // Almacén
+    Route::get('/store', [MechaniController::class, 'store'])->name('store.index');
+    Route::get('/store/category/{category}', [MechaniController::class, 'productsByCategory'])->name('store.category');
+    Route::get('/store/{product}', [MechaniController::class, 'showProduct'])->name('store.show');
+    
+    // Ventas
+    Route::get('/sales', [MechaniController::class, 'sales'])->name('sales.index');
+    Route::get('/sales/create', [MechaniController::class, 'createSale'])->name('sales.create');
+    Route::post('/sales', [MechaniController::class, 'storeSale'])->name('sales.store');
+    Route::get('/sales/{sale}', [MechaniController::class, 'showSale'])->name('sales.show');
+
+    // Perfil del Mecánico
+    Route::get('/profile', [MechaniController::class, 'profile'])->name('profile');
+    
 });
 

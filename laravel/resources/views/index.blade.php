@@ -653,7 +653,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-0">Dirección</h5>
-                                    <p class="mb-0">Av. Principal #123, Ciudad</p>
+                                    <p class="mb-0">1ro de Mayo Zona Sud</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-3">
@@ -662,7 +662,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-0">Teléfono</h5>
-                                    <p class="mb-0">(123) 456-7890</p>
+                                    <p class="mb-0">+591 78796985</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-3">
@@ -671,7 +671,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-0">Email</h5>
-                                    <p class="mb-0">info@tallerizquierdo.com</p>
+                                    <p class="mb-0">tall_izq@gmail.com</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
