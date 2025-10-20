@@ -41,10 +41,10 @@
         
         <div class="card-body">
             <table id="datatablesStore" class="table table-striped">
-                <thead class="table-dark">
+                <thead>
                     <tr>
                         <th>Nro</th>
-                        <th>Nombre</th>
+                        <th>Nombre del Repuesto</th>
                         <th>Categoría</th>
                         <th>Precio</th>
                         <th>Stock</th>
@@ -57,9 +57,7 @@
                     <tr class="{{ $store->low_stock ? 'table-warning' : '' }}">
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $store->name }}</td>
-                        <td>
-                            <span class="badge bg-primary">{{ $store->category }}</span>
-                        </td>
+                        <td>{{ $store->category }}</td>
                         <td>{{ $store->formatted_price }}</td>
                         <td>
                             <span class="{{ $store->low_stock ? 'text-danger fw-bold' : '' }}">
@@ -69,11 +67,7 @@
                                 @endif
                             </span>
                         </td>
-                        <td>
-                            <span class="badge bg-{{ $store->status ? 'success' : 'secondary' }}">
-                                {{ $store->status_text }}
-                            </span>
-                        </td>
+                        <td>{{ $store->status_text }}</td>
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="{{ route('store.show', $store->idPart) }}" 

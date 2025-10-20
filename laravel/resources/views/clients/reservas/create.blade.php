@@ -12,8 +12,8 @@
                 <p class="page-subtitle">Agenda un nuevo mantenimiento para tu motocicleta</p>
             </div>
             <!-- CORRECCIÓN: Ruta correcta -->
-            <a href="{{ route('cliente.reservas') }}" class="btn btn-secondary-custom">
-                <i class="fas fa-arrow-left me-1"></i> Volver
+            <a href="{{ route('cliente.reservas') }}" class="btn btn-warning-custom">
+                <i class="fas fa-arrow-left me-1"></i> Volver Atras
             </a>
         </div>
     </div>

@@ -4,21 +4,52 @@
     <meta charset="utf-8">
     <title>Reporte de Clientes - Taller Izquierdo</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
-        .title { color: #2c3e50; font-size: 24px; margin-bottom: 5px; }
-        .subtitle { color: #7f8c8d; font-size: 16px; }
-        .stats { margin: 20px 0; }
-        .stat-box { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin: 10px 0; }
-        .table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .table th { background-color: #2c3e50; color: white; padding: 10px; text-align: left; }
-        .table td { padding: 8px; border: 1px solid #ddd; }
-        .table tr:nth-child(even) { background-color: #f2f2f2; }
-        .footer { margin-top: 30px; text-align: center; color: #7f8c8d; font-size: 12px; }
-        .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-        .badge-success { background: #28a745; color: white; }
-        .badge-secondary { background: #6c757d; color: white; }
-        .badge-info { background: #17a2b8; color: white; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px;
+            color: #000;
+            background-color: #fff;
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid #000; 
+            padding-bottom: 10px; 
+        }
+        .title { 
+            font-size: 14px; 
+            margin-bottom: 5px; 
+        }
+        .subtitle { 
+            font-size: 12px; 
+        }
+        .stats { 
+            margin: 20px 0; 
+        }
+        .stat-box { 
+            border: 1px solid #000; 
+            padding: 10px; 
+            margin: 10px 0; 
+        }
+        .table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            font-size: 11px;
+        }
+        .table th, .table td { 
+            padding: 8px; 
+            border: 1px solid #000; 
+            text-align: left;
+        }
+        .table th { 
+            background-color: #f0f0f0; 
+        }
+        .footer { 
+            margin-top: 30px; 
+            text-align: center; 
+            font-size: 11px; 
+        }
     </style>
 </head>
 <body>
@@ -28,7 +59,7 @@
     </div>
 
     <!-- Información del Reporte -->
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 20px; font-size: 11px;">
         <p><strong>Generado por:</strong> {{ $generatedBy }}</p>
     </div>
 
@@ -36,16 +67,9 @@
     <div class="stats">
         <div style="display: flex; justify-content: space-between; gap: 10px;">
             <div class="stat-box" style="flex: 1;">
-                <h3 style="margin: 0; color: #2c3e50;">{{ $totalClients }}</h3>
-                <p style="margin: 5px 0 0 0; color: #7f8c8d;">Total Clientes</p>
-            </div>
-            <div class="stat-box" style="flex: 1;">
-                <h3 style="margin: 0; color: #28a745;">{{ $activeClients }}</h3>
-                <p style="margin: 5px 0 0 0; color: #7f8c8d;">Clientes Activos</p>
-            </div>
-            <div class="stat-box" style="flex: 1;">
-                <h3 style="margin: 0; color: #17a2b8;">{{ $clientsWithMotorcycles }}</h3>
-                <p style="margin: 5px 0 0 0; color: #7f8c8d;">Con Motocicletas</p>
+                <p style="margin: 5px 0 0 0; font-size: 11px;">Total clientes: {{ $totalClients }} <br>
+                    Clientes Activos: {{ $activeClients }} <br>
+                    Con Motocicletas: {{ $clientsWithMotorcycles }}</p>
             </div>
         </div>
     </div>
@@ -68,14 +92,12 @@
                     <td>{{ $client->firstName }} {{ $client->lastName }} {{ $client->secondLastName ?? '' }}</td>
                     <td>{{ $client->email }}</td>
                     <td>{{ $client->phone ?? 'N/A' }}</td>
-                    <td style="text-align: center;">
-                        <span class="badge badge-info">{{ $client->motorcycles_count }}</span>
-                    </td>
+                    <td style="text-align: center;">{{ $client->motorcycles_count }}</td>
                     <td>
                         @if($client->status == 1)
-                            <span class="badge badge-success">Activo</span>
+                            Activo
                         @else
-                            <span class="badge badge-secondary">Inactivo</span>
+                            Inactivo
                         @endif
                     </td>
                     <td>
@@ -91,7 +113,7 @@
     </table>
 
     @if($clients->count() == 0)
-        <div style="text-align: center; padding: 40px; color: #7f8c8d;">
+        <div style="text-align: center; padding: 40px; font-size: 11px;">
             <p>No hay clientes registrados</p>
         </div>
     @endif

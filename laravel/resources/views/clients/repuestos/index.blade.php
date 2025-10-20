@@ -27,13 +27,6 @@
                     @endforeach
                 </div>
             </div>
-             <!-- <div class="col-md-6">
-                <label class="form-label">Buscar repuesto:</label>
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="form-control" id="searchRepuestos" placeholder="Nombre del repuesto...">
-                </div>
-            </div> -->
         </div>
     </div>
 
@@ -78,31 +71,6 @@
             
             <div class="text-center mb-3">
                 <h3 class="text-success mb-1">Bs {{ number_format($repuesto->price, 2) }}</h3>
-                <small class="text-muted">Precio unitario</small>
-            </div>
-            
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="{{ $repuesto->low_stock ? 'text-danger fw-bold' : 'text-muted' }}">
-                    <i class="fas fa-boxes me-1"></i>
-                    Stock: {{ $repuesto->stock }} unidades
-                </span>
-                @if($repuesto->low_stock)
-                <span class="badge-custom badge-danger">¡Bajo Stock!</span>
-                @endif
-            </div>
-
-            @if($repuesto->description)
-            <div class="mb-3">
-                <small class="text-muted">Descripción:</small>
-                <p class="mb-1 small">{{ Str::limit($repuesto->description, 80) }}</p>
-            </div>
-            @endif
-            
-            <div class="card-footer-custom bg-transparent text-center pt-3">
-                <small class="text-muted">
-                    <i class="fas fa-calendar me-1"></i>
-                    Disponible desde {{ $repuesto->registrationDate->format('d/m/Y') }}
-                </small>
             </div>
         </div>
         @empty

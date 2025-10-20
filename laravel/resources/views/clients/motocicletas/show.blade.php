@@ -12,7 +12,7 @@
                 <p class="page-subtitle">Detalles completos de tu motocicleta</p>
             </div>
             <a href="{{ route('cliente.motocicletas') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left me-1"></i> Volver al Listado
+                <i class="fas fa-arrow-left me-1"></i> Volver Atras
             </a>
         </div>
     </div>

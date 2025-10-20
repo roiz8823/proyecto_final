@@ -169,7 +169,7 @@
             @if($reports->count() > 0)
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
-                        <thead class="table-dark">
+                        <thead>
                             <tr>
                                 <th>Tipo de Reporte</th>
                                 <th>Generado por</th>
@@ -180,9 +180,7 @@
                         <tbody>
                             @foreach($reports as $report)
                                 <tr>
-                                    <td>
-                                        <span class="badge bg-primary">{{ $report->formatted_type }}</span>
-                                    </td>
+                                    <td>{{ $report->formatted_type }}</td>
                                     <td>{{ $report->user->firstName }} {{ $report->user->lastName }}</td>
                                     <td>{{ $report->registrationDate->format('d/m/Y H:i') }}</td>
                                     <td>

@@ -4,24 +4,54 @@
     <meta charset="utf-8">
     <title>Reporte de Mantenimientos - Taller Izquierdo</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 10px; }
-        .title { color: #2c3e50; font-size: 24px; margin-bottom: 5px; }
-        .subtitle { color: #7f8c8d; font-size: 16px; }
-        .stats { margin: 20px 0; }
-        .stat-box { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin: 10px 0; }
-        .table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .table th { background-color: #2c3e50; color: white; padding: 10px; text-align: left; }
-        .table td { padding: 8px; border: 1px solid #ddd; }
-        .table tr:nth-child(even) { background-color: #f2f2f2; }
-        .footer { margin-top: 30px; text-align: center; color: #7f8c8d; font-size: 12px; }
-        .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-        .badge-success { background: #28a745; color: white; }
-        .badge-warning { background: #ffc107; color: black; }
-        .badge-info { background: #17a2b8; color: white; }
-        .badge-secondary { background: #6c757d; color: white; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px;
+            color: #000;
+            background-color: #fff;
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid #000; 
+            padding-bottom: 10px; 
+        }
+        .title { 
+            font-size: 14px; 
+            margin-bottom: 5px; 
+        }
+        .subtitle { 
+            font-size: 12px; 
+        }
+        .stats { 
+            margin: 20px 0; 
+        }
+        .stat-box { 
+            border: 1px solid #000; 
+            padding: 10px; 
+            margin: 10px 0; 
+        }
+        .table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            font-size: 11px;
+        }
+        .table th, .table td { 
+            padding: 8px; 
+            border: 1px solid #000; 
+            text-align: left;
+        }
+        .table th { 
+            background-color: #f0f0f0; 
+        }
+        .footer { 
+            margin-top: 30px; 
+            text-align: center; 
+            font-size: 11px; 
+        }
         .text-right { text-align: right; }
-        .page-break { page-break-after: always; }
+        .text-small { font-size: 9px; }
     </style>
 </head>
 <body>
@@ -31,7 +61,7 @@
     </div>
 
     <!-- Información del Reporte -->
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 20px; font-size: 11px;">
         <p><strong>Generado por:</strong> {{ $generatedBy }}</p>
         @if($startDate || $endDate)
         <p><strong>Período:</strong> 
@@ -46,16 +76,11 @@
     <div class="stats">
         <div style="display: flex; justify-content: space-between; gap: 10px;">
             <div class="stat-box" style="flex: 1;">
-                <h3 style="margin: 0; color: #2c3e50;">{{ $totalMaintenances }}</h3>
-                <p style="margin: 5px 0 0 0; color: #7f8c8d;">Total Mantenimientos</p>
-            </div>
-            <div class="stat-box" style="flex: 1;">
-                <h3 style="margin: 0; color: #28a745;">${{ number_format($totalCost, 2) }}</h3>
-                <p style="margin: 5px 0 0 0; color: #7f8c8d;">Costo Total</p>
-            </div>
-            <div class="stat-box" style="flex: 1;">
-                <h3 style="margin: 0; color: #17a2b8;">{{ $byStatus['completed'] ?? 0 }}</h3>
-                <p style="margin: 5px 0 0 0; color: #7f8c8d;">Completados</p>
+                <p style="margin: 5px 0 0 0; font-size: 11px;">
+                    Total Mantenimientos: {{ $totalMaintenances }} <br>
+                    Costo Total: Bs {{ number_format($totalCost, 2) }} <br>
+                    Completados: {{ $byStatus['completed'] ?? 0 }}
+                </p>
             </div>
         </div>
     </div>
@@ -81,7 +106,7 @@
                         <strong>{{ $maintenance->motorcycle->brand }}</strong> 
                         {{ $maintenance->motorcycle->model }}
                         <br>
-                        <small>Placa: {{ $maintenance->motorcycle->licensePlate }}</small>
+                        <small class="text-small">Placa: {{ $maintenance->motorcycle->licensePlate }}</small>
                     </td>
                     <td>
                         @if($maintenance->motorcycle->user)
@@ -98,16 +123,16 @@
                         @endif
                     </td>
                     <td>{{ Str::limit($maintenance->diagnosis, 50) }}</td>
-                    <td style="text-align: right;">${{ number_format($maintenance->cost, 2) }}</td>
+                    <td class="text-right">Bs {{ number_format($maintenance->cost, 2) }}</td>
                     <td>
                         @if($maintenance->status == 'completed')
-                            <span class="badge badge-success">Completado</span>
+                            Completado
                         @elseif($maintenance->status == 'in_progress')
-                            <span class="badge badge-warning">En Progreso</span>
+                            En Progreso
                         @elseif($maintenance->status == 'pending')
-                            <span class="badge badge-info">Pendiente</span>
+                            Pendiente
                         @else
-                            <span class="badge badge-secondary">Cancelado</span>
+                            Cancelado
                         @endif
                     </td>
                 </tr>
@@ -116,7 +141,7 @@
     </table>
 
     @if($maintenances->count() == 0)
-        <div style="text-align: center; padding: 40px; color: #7f8c8d;">
+        <div style="text-align: center; padding: 40px; font-size: 11px;">
             <p>No hay mantenimientos registrados</p>
         </div>
     @endif

@@ -12,15 +12,17 @@
     <div class="dashboard-grid">
         <!-- Fila 1: 2 cards arriba -->
         <div class="dashboard-row">
-            <!-- Card 1: Reservas -->
+            
+            <!-- Card 3: Motocicletas -->
             <div class="dashboard-card">
                 <div>
                     <div class="card-icon">
-                        <i class="fas fa-calendar-plus"></i>
+                        <i class="fas fa-motorcycle"></i>
                     </div>
-                    <h3 class="card-title">Hacer Reserva</h3>
+                    <h3 class="card-title">Mis Motocicletas</h3>
+                    <p>PASO 1 REGISTRAR SU MOTOCICLETA </p>
                 </div>
-                <a href="{{ route('cliente.reservas') }}" class="card-btn">Reservar Ahora</a>
+                <a href="{{ route('cliente.motocicletas') }}" class="card-btn">Ver Motos</a>
             </div>
 
             <!-- Card 2: Historial -->
@@ -30,6 +32,7 @@
                         <i class="fas fa-clipboard-list"></i>
                     </div>
                     <h3 class="card-title">Historial de Mantenimiento</h3>
+                    <p>PASO 3 REVISAR EL HISTORIAL DE MANTENIMIENTOS</p>
                 </div>
                 <a href="{{ route('cliente.mantenimiento.historial') }}" class="card-btn">Ver Historial</a>
             </div>
@@ -37,15 +40,16 @@
 
         <!-- Fila 2: 2 cards abajo -->
         <div class="dashboard-row">
-            <!-- Card 3: Motocicletas -->
+            <!-- Card 1: Reservas -->
             <div class="dashboard-card">
                 <div>
                     <div class="card-icon">
-                        <i class="fas fa-motorcycle"></i>
+                        <i class="fas fa-calendar-plus"></i>
                     </div>
-                    <h3 class="card-title">Mis Motocicletas</h3>
+                    <h3 class="card-title">Hacer Reserva</h3>
+                    <p>PASO 2 REALIZAR UNA RESERVA</p>
                 </div>
-                <a href="{{ route('cliente.motocicletas') }}" class="card-btn">Ver Motos</a>
+                <a href="{{ route('cliente.reservas') }}" class="card-btn">Reservar Ahora</a>
             </div>
 
             <!-- Card 4: Repuestos -->
@@ -55,6 +59,7 @@
                         <i class="fas fa-cog"></i>
                     </div>
                     <h3 class="card-title">Repuestos Disponibles</h3>
+                    <p>PASO 4 VER REPUESTOS DISPONIBLE </p>
                 </div>
                 <a href="{{ route('cliente.repuestos') }}" class="card-btn">Ver Repuestos</a>
             </div>

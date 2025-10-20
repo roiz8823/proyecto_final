@@ -12,7 +12,7 @@
                 <p class="page-subtitle">Agrega una nueva motocicleta a tu perfil</p>
             </div>
             <a href="{{ route('cliente.motocicletas') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left me-1"></i> Volver al Listado
+                <i class="fas fa-arrow-left me-1"></i> Volver Atras
             </a>
         </div>
     </div>

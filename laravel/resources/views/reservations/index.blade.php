@@ -13,102 +13,65 @@
                 <i class="fas fa-plus"></i> Nueva Reserva
             </a>
         </div>
-        
         <div class="card-header">
             @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                <p class="text-success">{{ session('success') }}</p>
             @endif
         </div>
-        
         <div class="card-body">
-            <table id="datatablesReservations" class="table table-striped">
-                <thead class="table-dark">
+            <table id="datatablesSimple">
+                <thead>
                     <tr>
                         <th>Nro</th>
                         <th>Motocicleta</th>
                         <th>Propietario</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
+                        <th>Fecha y Hora</th>
                         <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nro</th>
+                        <th>Motocicleta</th>
+                        <th>Propietario</th>
+                        <th>Fecha y Hora</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </tfoot>
                 <tbody>
                     @foreach ($reservations as $key => $reservation)
-                    <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td>
-                            <strong>{{ $reservation->motorcycle->brand }} {{ $reservation->motorcycle->model }}</strong>
-                            <br>
-                            <small class="text-muted">{{ $reservation->motorcycle->licensePlate }}</small>
-                        </td>
-                        <td>
-                            {{ $reservation->motorcycle->user->firstName ?? 'N/A' }} 
-                            {{ $reservation->motorcycle->user->lastName ?? '' }}
-                        </td>
-                        <td>{{ $reservation->reservationDate->format('d/m/Y') }}</td>
-                        <td>{{ $reservation->reservationTime }}</td>
-                        <td>
-                            <span class="badge bg-{{ $reservation->status_class }}">
-                                {{ $reservation->status_text }}
-                            </span>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="{{ route('reservations.show', $reservation->idReservation) }}" 
-                                   class="btn btn-primary btn-sm" title="Ver detalles">
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $reservation->motorcycle->brand }} {{ $reservation->motorcycle->model }}<br>
+                                {{ $reservation->motorcycle->licensePlate }}
+                            </td>
+                            <td>{{ $reservation->motorcycle->user->firstName ?? 'N/A' }} {{ $reservation->motorcycle->user->lastName ?? '' }}</td>
+                            <td>
+                                {{ $reservation->reservationDate->format('d/m/Y') }} <br>
+                                {{ $reservation->reservationTime }}
+                            </td>
+                            <td>{{ $reservation->status_text }}</td>
+                            <td>
+                                <a href="{{ route('reservations.show', $reservation->idReservation) }}" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ route('reservations.edit', $reservation->idReservation) }}" 
-                                   class="btn btn-warning btn-sm" title="Editar">
+                                <a href="{{ route('reservations.edit', $reservation->idReservation) }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('reservations.destroy', $reservation->idReservation) }}" 
-                                      method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" 
-                                            title="Eliminar"
-                                            onclick="return confirm('¿Confirmas eliminar esta reserva?')">
-                                        <i class="fas fa-trash-alt"></i>
+                                <form action="{{ route('reservations.destroy', $reservation->idReservation) }}" method="POST" style="display:inline;">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar reserva?')">
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                       </tr>
                     @endforeach
                 </tbody>
             </table>
-            
-            @if($reservations->isEmpty())
-                <div class="alert alert-info text-center">
-                    No se encontraron reservas registradas
-                </div>
-            @endif
-            
-            <div class="d-flex justify-content-center mt-3">
-                {{ $reservations->links() }}
-            </div>
         </div>
     </div>
 </div>
-
-@section('scripts')
-<script>
-    $(document).ready(function() {
-        $('#datatablesReservations').DataTable({
-            responsive: true,
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
-            },
-            dom: '<"top"f>rt<"bottom"lip><"clear">',
-            pageLength: 10,
-            order: [[3, 'desc'], [4, 'desc']] // Ordenar por fecha y hora descendente
-        });
-    });
-</script>
-@endsection
 @endsection

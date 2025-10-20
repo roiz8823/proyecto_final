@@ -13,16 +13,11 @@
                 <i class="fas fa-plus"></i> Nuevo Mantenimiento
             </a>
         </div>
-        
         <div class="card-header">
             @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                <p class="text-success">{{ session('success') }}</p>
             @endif
         </div>
-        
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>
@@ -30,11 +25,10 @@
                         <th>Nro</th>
                         <th>Motocicleta</th>
                         <th>Mecánico</th>
-                        <th>Diagnóstico</th>
                         <th>Fecha</th>
                         <th>Costo</th>
                         <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -42,84 +36,42 @@
                         <th>Nro</th>
                         <th>Motocicleta</th>
                         <th>Mecánico</th>
-                        <th>Diagnóstico</th>
                         <th>Fecha</th>
                         <th>Costo</th>
                         <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>Acción</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach ($maintenances as $key => $maintenance)
-                    <tr>
-                        <td>{{ $key + 1 }}</td>
-                        <td>
-                            {{ $maintenance->motorcycle->brand }} 
-                            {{ $maintenance->motorcycle->model }}
-                            <small class="text-muted d-block">{{ $maintenance->motorcycle->licensePlate }}</small>
-                        </td>
-                        <td>{{ $maintenance->mechanic->firstName ?? 'N/A' }}
-                            {{ $maintenance->mechanic->lastName ?? 'N/A' }}
-                        </td>
-                        <td>
-                            <span title="{{ $maintenance->diagnosis }}">
-                                {{ Str::limit($maintenance->diagnosis, 25) }}
-                            </span>
-                        </td>
-                        <td>{{ $maintenance->maintenanceDate }}</td>
-                        <td>{{ number_format($maintenance->cost, 2) }} Bs.</td>
-                        <td>{{ $maintenance->status_text }}</td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <a href="{{ route('maintenances.show', $maintenance, $maintenance->idMaintenance) }}" 
-                                   class="btn btn-primary btn-sm" title="Ver detalles">
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $maintenance->motorcycle->brand }} {{ $maintenance->motorcycle->model }}<br>
+                                {{ $maintenance->motorcycle->licensePlate }}
+                            </td>
+                            <td>{{ $maintenance->mechanic->firstName ?? 'N/A' }} {{ $maintenance->mechanic->lastName ?? '' }}</td>
+                            <td>{{ $maintenance->maintenanceDate }}</td>
+                            <td>{{ number_format($maintenance->cost, 2) }} Bs.</td>
+                            <td>{{ $maintenance->status_text }}</td>
+                            <td>
+                                <a href="{{ route('maintenances.show', $maintenance->idMaintenance) }}" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ route('maintenances.edit', $maintenance) }}" 
-                                   class="btn btn-warning btn-sm" title="Editar">
+                                <a href="{{ route('maintenances.edit', $maintenance->idMaintenance) }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('maintenances.destroy', $maintenance->idMaintenance) }}" 
-                                      method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" 
-                                            title="Eliminar"
-                                            onclick="return confirm('¿Confirmas eliminar este mantenimiento?')">
-                                        <i class="fas fa-trash-alt"></i>
+                                <form action="{{ route('maintenances.destroy', $maintenance->idMaintenance) }}" method="POST" style="display:inline;">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar mantenimiento?')">
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                       </tr>
                     @endforeach
                 </tbody>
             </table>
-            
-            @if($maintenances->isEmpty())
-                <div class="alert alert-info text-center">
-                    No se encontraron mantenimientos registrados
-                </div>
-            @endif
-            
-            
         </div>
     </div>
 </div>
-
-@section('scripts')
-<script>
-    $(document).ready(function() {
-        $('#datatablesMaintenance').DataTable({
-            responsive: true,
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json'
-            },
-            dom: '<"top"f>rt<"bottom"lip><"clear">',
-            pageLength: 10
-        });
-    });
-</script>
-@endsection
-
 @endsection
