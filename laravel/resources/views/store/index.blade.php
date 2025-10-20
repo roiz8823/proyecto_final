@@ -58,7 +58,7 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $store->name }}</td>
                         <td>
-                            <span class="badge bg-info">{{ $store->category }}</span>
+                            <span class="badge bg-primary">{{ $store->category }}</span>
                         </td>
                         <td>{{ $store->formatted_price }}</td>
                         <td>
@@ -77,7 +77,7 @@
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="{{ route('store.show', $store->idPart) }}" 
-                                   class="btn btn-info btn-sm" title="Ver detalles">
+                                   class="btn btn-primary btn-sm" title="Ver detalles">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 <a href="{{ route('store.edit', $store->idPart) }}" 

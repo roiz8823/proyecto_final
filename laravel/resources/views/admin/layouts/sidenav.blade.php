@@ -43,7 +43,7 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-store"></i></div>
                                     Ventas
                                 </a>
-                                <a class="nav-link" href="index.html">
+                                <a class="nav-link" href="{{ route('reports.index') }}">
                                     <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                                     Reportes
                                 </a>

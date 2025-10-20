@@ -53,12 +53,6 @@
                             <label for="diagnosis">Diagnóstico</label>
                         </div>
 
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" name="serviceDetails" id="serviceDetails" 
-                                      style="height: 100px" required>{{ old('serviceDetails') }}</textarea>
-                            <label for="serviceDetails">Detalles del Servicio</label>
-                        </div>
-
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3 mb-md-0">
@@ -86,13 +80,6 @@
                                         <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>Cancelado</option>
                                     </select>
                                     <label for="status">Estado</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <textarea class="form-control" name="notes" id="notes" 
-                                              style="height: 100px">{{ old('notes') }}</textarea>
-                                    <label for="notes">Notas Adicionales</label>
                                 </div>
                             </div>
                         </div>

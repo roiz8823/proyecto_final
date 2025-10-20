@@ -59,7 +59,7 @@
                         <td>
                             <div class="d-flex gap-1">
                                 <a href="{{ route('reservations.show', $reservation->idReservation) }}" 
-                                   class="btn btn-info btn-sm" title="Ver detalles">
+                                   class="btn btn-primary btn-sm" title="Ver detalles">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 <a href="{{ route('reservations.edit', $reservation->idReservation) }}" 

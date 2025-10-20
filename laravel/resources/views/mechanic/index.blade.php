@@ -24,8 +24,8 @@
                     <tr>
                         <th>Nro</th>
                         <th>Nombre</th>
-                        <th>Correo</th>
                         <th>Telefono</th>
+                        <th>Direccion</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
@@ -33,8 +33,8 @@
                     <tr>
                         <th>Nro</th>
                         <th>Nombre</th>
-                        <th>Correo</th>
                         <th>Telefono</th>
+                        <th>Direccion</th>
                         <th>Acción</th>
                     </tr>
                 </tfoot>
@@ -42,11 +42,13 @@
                     @foreach ($users as $key => $user)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $user->firstName }} {{ $user->lastName}}</td>
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->firstName }} {{ $user->lastName}} </br>
+                                {{ $user->email }}
+                            </td>
                             <td>{{ $user->phone }}</td>
+                            <td>{{ $user->address }}</td>
                             <td>
-                                <a href="#" class="btn btn-primary btn-sm ">
+                                <a href="{{ route('motorcycles.index') }}" class="btn btn-primary btn-sm ">
                                     <i class="fas fa-motorcycle"></i>
                                 </a>
                                 <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm ">

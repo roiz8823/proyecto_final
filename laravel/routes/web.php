@@ -10,6 +10,8 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\MechaniController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ExportController;
 
 
 
@@ -68,6 +70,7 @@ Route::get('/mechanic', [UserController::class, 'mechanics']);
 
 // rutas de mantenimiento
 Route::resource('maintenances', MaintenanceController::class);
+Route::get('maintenances/{id}/export-pdf', [MaintenanceController::class, 'exportPDF'])->name('maintenances.export-pdf');
 
 // rutas de reserva
 Route::resource('reservations', ReservationController::class);
@@ -89,6 +92,28 @@ Route::get('/sales/{id}/edit', [SaleController::class, 'edit'])->name('sales.edi
 Route::put('/sales/{id}', [SaleController::class, 'update'])->name('sales.update');
 Route::delete('/sales/{id}', [SaleController::class, 'destroy'])->name('sales.destroy');
 
+// Reportes
+Route::prefix('reports')->name('reports.')->group(function () {
+    Route::get('/', [ReportController::class, 'index'])->name('index');
+    Route::get('/sales', [ReportController::class, 'salesReport'])->name('sales');
+    Route::get('/clients', [ReportController::class, 'clientsReport'])->name('clients');
+    Route::get('/motorcycles', [ReportController::class, 'motorcyclesReport'])->name('motorcycles');
+    Route::get('/maintenances', [ReportController::class, 'maintenancesReport'])->name('maintenances');
+    Route::get('/reservations', [ReportController::class, 'reservationsReport'])->name('reservations');
+    Route::get('/inventory', [ReportController::class, 'inventoryReport'])->name('inventory');
+});
+
+// Exportaciones
+Route::prefix('exports')->name('exports.')->group(function () {
+    Route::get('/sales/pdf', [ExportController::class, 'exportSalesPDF'])->name('sales.pdf');
+    Route::get('/clients/pdf', [ExportController::class, 'exportClientsPDF'])->name('clients.pdf');
+    Route::get('/motorcycles/pdf', [ExportController::class, 'exportMotorcyclesPDF'])->name('motorcycles.pdf');
+    Route::get('/maintenances/pdf', [ExportController::class, 'exportMaintenancesPDF'])->name('maintenances.pdf');
+    Route::get('/reservations/pdf', [ExportController::class, 'exportReservationsPDF'])->name('reservations.pdf');
+    Route::get('/inventory/pdf', [ExportController::class, 'exportInventoryPDF'])->name('inventory.pdf');
+
+    Route::get('maintenances/{id}/export-pdf', [ExportController::class, 'exportMaintenanceReceiptPDF'])->name('maintenances.export-pdf');
+});
 
 // Rutas para Clientes
 Route::prefix('clients')->name('cliente.')->middleware(['auth', 'role:client'])->group(function () {

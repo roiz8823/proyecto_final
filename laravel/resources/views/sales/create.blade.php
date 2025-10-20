@@ -2,13 +2,7 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Nueva Venta</h1>
-    
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('sales.index') }}">Ventas</a></li>
-        <li class="breadcrumb-item active">Nueva Venta</li>
-    </ol>
+    <h1 class="mt-4 text-bold">Nueva Venta</h1>
 
     <div class="card mb-4">
         <div class="card-header bg-primary text-white">

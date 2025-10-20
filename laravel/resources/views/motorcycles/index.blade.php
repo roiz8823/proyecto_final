@@ -57,7 +57,7 @@
                             <td>{{ $motorcycle->licensePlate }}</td>
                             <td>
                                 <a href="{{ route('motorcycles.show', $motorcycle->idMotorcycle) }}" class="btn btn-sm btn-primary" title="Ver">
-                                    <i class="fas fa-file-alt"></i>
+                                    <i class="fas fa-eye"></i>
                                 </a>
                                 <a href="{{ route('motorcycles.edit', $motorcycle->idMotorcycle) }}" 
                                 class="btn btn-sm btn-warning" title="Editar">

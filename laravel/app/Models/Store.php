@@ -44,7 +44,7 @@ class Store extends Model
     // Accesor para el precio formateado
     public function getFormattedPriceAttribute()
     {
-        return '$' . number_format($this->price, 2);
+        return 'Bs ' . number_format($this->price, 2);
     }
 
     // Scope para repuestos activos

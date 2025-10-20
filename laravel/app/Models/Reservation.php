@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Reservation extends Model
 {
@@ -22,7 +23,7 @@ class Reservation extends Model
 
     protected $casts = [
         'reservationDate' => 'date',
-        'creationDate' => 'datetime', // Agregar este cast
+        'creationDate' => 'datetime',
         'reservationTime' => 'string'
     ];
 
@@ -30,6 +31,12 @@ class Reservation extends Model
     public function motorcycle()
     {
         return $this->belongsTo(Motorcycle::class, 'idMotorcycle', 'idMotorcycle');
+    }
+
+    // Otra forma más simple: acceder al usuario a través de la motocicleta
+    public function getUserAttribute()
+    {
+        return $this->motorcycle->user ?? null;
     }
 
     // Accesor para el estado
@@ -60,7 +67,7 @@ class Reservation extends Model
         ][$this->status] ?? 'secondary';
     }
 
-      // Accesor para creationDate formateada
+    // Accesor para creationDate formateada
     public function getFormattedCreationDateAttribute()
     {
         return Carbon::parse($this->creationDate)->format('d/m/Y H:i');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Maintenance;
 use App\Models\Motorcycle;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MaintenanceController extends Controller
 {
@@ -99,5 +100,24 @@ class MaintenanceController extends Controller
 
         return redirect()->route('maintenances.index')
                         ->with('success', 'Mantenimiento eliminado exitosamente');
+    }
+
+    /**
+     * Exportar recibo de mantenimiento en PDF
+     */
+    public function exportPDF($id)
+    {
+        $maintenance = Maintenance::with(['motorcycle.user', 'mechanic'])->findOrFail($id);
+        
+        $data = [
+            'maintenance' => $maintenance,
+            'generatedAt' => now()->format('d/m/Y H:i')
+        ];
+
+        $pdf = Pdf::loadView('exports.maintenance-receipt-pdf', $data);
+        
+        $filename = 'recibo-mantenimiento-' . $maintenance->idMaintenance . '-' . now()->format('Y-m-d') . '.pdf';
+        
+        return $pdf->download($filename);
     }
 }
